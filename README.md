@@ -1,5 +1,5 @@
 # Fridge and Recipe
-Fridge server with API functionalities to verify recipe, in addtion add or remove ingredients from fridge by API calls.
+Fridge server with API functionalities to verify recipe, in addition add or remove ingredients from fridge by API calls.
 
 
 ## manual guide
@@ -8,16 +8,16 @@ Fridge server with API functionalities to verify recipe, in addtion add or remov
 This project contains mainly one program. <br>
 1. fridge server (fridge_recipe.py) <br>
 
-#### Start up HTTP server (runs at backend)
+#### Start the main program
 Start the main program by giving the initial fridge ingredients file (the file should be in the same dictory as the program).
 > python3 fridge_recipe.py  my-fridge.csv <br>
 
 This will start the fridge server that allows user to interact with it by API calls.. <br>
 
 
-### Interact with Elevators
-Once the main program starts, there are 4 API's will be available to interact with the elevators. <br>
-There are 1 main API  and 3 additional API's. <br>
+### Interact with program
+Once the main program starts, there are 4 API's will be available to interact with the program. <br>
+There are 1 main API and 3 additional API's. <br>
 
 #### main recipe API
 recipe API to POST recipe(s) and receive feedback with all recipe availabilites and preferred recipe. <br>
@@ -27,7 +27,6 @@ recipe API to POST recipe(s) and receive feedback with all recipe availabilites 
 1. fridge display API to display all the ingredients that are currently in fridge. <br>
 2. add ingredients API to simulate adding ingredients to the fridge and display all the ingredients in the fridge after added. <br>
 3. remove ingredients API to simulate taking ingredients out of the fridge and display all the ingredients in the fridge after taken. <br>
-
 
 
 ## API Manual
