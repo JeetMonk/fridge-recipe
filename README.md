@@ -110,4 +110,4 @@ Body (raw json): <br>
 ]
 <br><br>
 
-> Any above API which will change the ingredients of the fridge will also update the fridge ingredients file (my-fridge.csv).
+> Any above API which can change the ingredients of the fridge will also update the fridge ingredients file (my-fridge.csv).
