@@ -12,8 +12,9 @@ import uvicorn
 
 
 cwd = os.getcwd()
-#fridgeFileName = 'my-fridge.csv'
-fridgeFileName = sys.argv[1]
+fridgeFileName = 'my-fridge.csv'
+#fridgeFileName = ''
+#fridgeFileName = sys.argv[1]
 fridgeContentRawList = []
 fridgeContentExceptionList = []
 ingredientDF = pandas.DataFrame()
@@ -80,8 +81,9 @@ def validateFridgeContent(fridgeContentRawList):
 
 
 
-def checkFridge():
+def checkFridge(ingredientDF):
     ingredientDisplayDF = ingredientDF.copy()
+    #print(ingredientDisplayDF)
     currentDT = datetime.now()
     currentDate = currentDT.strftime("%Y-%m-%d")
     ingredientDisplayDF['status'] = np.where(ingredientDisplayDF['expireDate']>=currentDate, 'good', 'expired')
@@ -117,7 +119,7 @@ def addToFridgeContent(addToFridgeContentList):
             ingredientDF['quantity'].loc[(ingredientDF['item'] == item) & (ingredientDF['unit'] == unit) & (ingredientDF['expireDate'] == expireDate)] = newQuantity
     ## update fridge file
     updateFridgeContentFile()
-    returningredientList = checkFridge()
+    returningredientList = checkFridge(ingredientDF)
     return returningredientList
 
 
@@ -147,12 +149,12 @@ def takeoutFridgeContent(deleteFromFridgeContentList):
         
     ## update fridge file
     updateFridgeContentFile()
-    returningredientList = checkFridge()
+    returningredientList = checkFridge(ingredientDF)
     return returningredientList
 
 
 
-def handleRecipe(inputRecipe):
+def handleRecipe(inputRecipe,ingredientDF):
     ## read the input recipe
     #recipeList = json.loads(inputRecipe)
     recipeList = inputRecipe
@@ -207,14 +209,14 @@ def handleRecipe(inputRecipe):
     
 
 async def lookIntoFridge(request):
-    returnDict = checkFridge()
+    returnDict = checkFridge(ingredientDF)
     return UJSONResponse(returnDict)
 
 
 async def checkRecipe(request):
     body = await request.json()
     print("body:",body)
-    returnDict = handleRecipe(body)
+    returnDict = handleRecipe(body,ingredientDF)
     return UJSONResponse(returnDict)
 
 
